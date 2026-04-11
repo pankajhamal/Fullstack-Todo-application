@@ -1,13 +1,15 @@
 import express from 'express'
 import {config} from 'dotenv'
-
 const app = express();
 
-config();
+//Import Routes
+import authRoutes from './routes/authRoutes.js'
 
-app.get('/', (req, res) =>{
-  res.send("Hello world");
-})
+config();
+app.use(express.json());
+
+app.use("/auth", authRoutes);
+
 
 const port = 3000;
 app.listen(port, () =>{
